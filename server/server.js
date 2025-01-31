@@ -1,45 +1,32 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const csrf = require('csurf');
-const cookieParser = require('cookie-parser');
+const express = require("express");
+const rateLimit = require("express-rate-limit");
+const cors = require("cors"); // Import CORS
 
 const app = express();
-app.use(bodyParser.json());
-app.use(cors());
-app.use(cookieParser());
 
-const csrfProtection = csrf({ cookie: true });
+// Enable CORS for all origins (or specify your React app URL)
+app.use(cors({ origin: "http://localhost:5173" }));
 
-// Simulated bank balance
-let balance = 5000;
-
-
-// Generate CSRF token
-app.get('/csrf-token', csrfProtection, (req, res) => {
-    res.json({ csrfToken: req.csrfToken() });
-  });
-
-app.post('/transfer', csrfProtection, (req, res) => {
-  const { amount, to } = req.body;
-
-  // Validate inputs
-  if (typeof amount !== 'number' || !to) {
-   
-    // I want to return the error message to the client invalid CSRF token
-    return res.status(400).json({ error: 'Invalid CSRF token' });
-  }
-
-  // Update balance
-  balance -= amount;
-  console.log(`Transferred $${amount} to ${to}. New balance: $${balance}`);
-  res.send('Transfer complete! 💸');
+// Rate limiting middleware
+const limiter = rateLimit({
+  windowMs: 60 * 1000, // 1 minute
+  max: 10, // Limit each IP to 10 requests per window
+  standardHeaders: true,
+  legacyHeaders: false,
+  handler: (req, res) => {
+    res
+      .status(429)
+      .json({ error: "Too many requests! Please try again later." });
+  },
 });
 
-app.get('/balance', (req, res) => {
-  res.json({ balance });
+app.use("/api/data", limiter); // Apply rate limit **only** to `/api/data`
+
+app.get("/api/data", (req, res) => {
+  res.send("Protected data!");
 });
 
+// Start the server
 app.listen(5000, () => {
-  console.log('Vulnerable server running on http://localhost:5000');
+  console.log("Secure server running on http://localhost:5000");
 });
