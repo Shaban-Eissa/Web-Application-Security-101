@@ -2,38 +2,30 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function App() {
-  const [comments, setComments] = useState([]);
-  const [newComment, setNewComment] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
-  const fetchComments = async () => {
-    const response = await axios.get('http://localhost:5000/comments');
-    setComments(response.data);
+  const handleLogin = async () => {
+    const response = await axios.post('http://localhost:5000/login', { username, password });
+    alert(response.data);
   };
-
-  const addComment = async () => {
-    await axios.post('http://localhost:5000/comments', { text: newComment });
-    setNewComment('');
-    fetchComments();
-  };
-
-  useEffect(() => {
-    fetchComments();
-  }, []);
-
   return (
     <div>
-      <h1>Comments</h1>
+      <h1>Login</h1>
       <input
-        value={newComment}
-        onChange={(e) => setNewComment(e.target.value)}
-        placeholder="Add a comment"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+        placeholder="Username"
       />
-      <button onClick={addComment}>Submit</button>
-      <div>
-        {comments.map((comment) => (
-          <div key={comment.id} dangerouslySetInnerHTML={{ __html: comment.text }} />
-        ))}
-      </div>
+      <br/> 
+      <input
+      type='password'
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        placeholder="Password"
+      />
+      <br/>
+      <button onClick={handleLogin}>Login</button>
     </div>
   );
 }
