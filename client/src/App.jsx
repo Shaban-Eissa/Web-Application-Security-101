@@ -1,35 +1,41 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [comments, setComments] = useState([]);
+  const [newComment, setNewComment] = useState('');
+
+  const fetchComments = async () => {
+    const response = await axios.get('http://localhost:5000/comments');
+    setComments(response.data);
+  };
+
+  const addComment = async () => {
+    await axios.post('http://localhost:5000/comments', { text: newComment });
+    setNewComment('');
+    fetchComments();
+  };
+
+  useEffect(() => {
+    fetchComments();
+  }, []);
 
   return (
-    <>
+    <div>
+      <h1>Comments</h1>
+      <input
+        value={newComment}
+        onChange={(e) => setNewComment(e.target.value)}
+        placeholder="Add a comment"
+      />
+      <button onClick={addComment}>Submit</button>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        {comments.map((comment) => (
+          <div key={comment.id} dangerouslySetInnerHTML={{ __html: comment.text }} />
+        ))}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
