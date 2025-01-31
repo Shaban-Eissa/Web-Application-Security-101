@@ -1,35 +1,62 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import FakeAd from './FakeAd';
+import axios from 'axios';
+import { useState } from 'react';
+
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/fake-ad" element={<FakeAd />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+function Home() {
+  const [amount, setAmount] = useState(100);
+  const [to, setTo] = useState('');
+
+  const transfer = async () => {
+    await axios.post('http://localhost:5000/transfer', { amount, to });
+    alert('Transfer succeeded!');
+  };
+
+  return (
+    <div>
+      <h1>Bank Account: $1000</h1>
+      <input
+        type="number"
+        value={amount}
+        onChange={(e) => setAmount(e.target.value)}
+      />
+      <input
+        placeholder="Recipient"
+        value={to}
+        onChange={(e) => setTo(e.target.value)}
+      />
+      <button onClick={transfer}>Transfer Money</button>
+
+      {/* Fake Ad */}
+      <div
+        style={{
+          marginTop: '20px',
+          padding: '10px',
+          border: '1px solid #ccc',
+          borderRadius: '5px',
+          cursor: 'pointer',
+        }}
+        onClick={() => {
+          // Redirect to a fake page
+          window.location.href = 'http://localhost:5173/fake-ad';
+        }}
+      >
+        <h3>🎉 Win a Free iPhone! Click Here! 🎉</h3>
+      </div>
+    </div>
+  );
+}
+
+export default App;
