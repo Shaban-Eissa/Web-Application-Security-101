@@ -5,7 +5,7 @@ const cors = require("cors");
 const sanitizeHtml = require("sanitize-html");
 
 const app = express();
-const db = new sqlite3.Database(":memory:"); // In-memory SQLite database
+const db = new sqlite3.Database(":memory:");
 
 // Create comments table
 db.serialize(() => {
@@ -15,13 +15,12 @@ db.serialize(() => {
 app.use(bodyParser.json());
 app.use(cors());
 
-// Customize options to allow <img> with the onerror attribute
 const options = {
-  allowedTags: ["b", "i", "em", "strong", "a", "p", "img"], // Allow img tag
+  allowedTags: ["b", "i", "em", "strong", "a", "p", "img"],
   allowedAttributes: {
-    "*": ["href", "src", "alt", "title", "onerror"], // Allow onerror for img
+    "*": ["href", "src", "alt", "title", "onerror"],
   },
-  allowedSchemes: ["http", "https", "data", "mailto"], // Allow URLs
+  allowedSchemes: ["http", "https", "data", "mailto"],
 };
 
 app.post("/comments", (req, res) => {
@@ -37,7 +36,6 @@ app.get("/comments", (req, res) => {
   });
 });
 
-// Start server
 const PORT = 5000;
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
