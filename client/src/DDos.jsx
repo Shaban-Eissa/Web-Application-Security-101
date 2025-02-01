@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import "./index.css";
+
 const DDoS = () => {
   const [message, setMessage] = useState("");
 
@@ -31,10 +33,14 @@ const DDoS = () => {
   };
 
   return (
-    <div>
+    <div className="ddos-container">
       <h1>DDoS Demo</h1>
       <button onClick={floodServer}>Simulate Attack</button>
-      {message && <p style={{ color: "red" }}>{message}</p>}
+      {message && (
+        <p className={message.includes("overwhelmed") ? "error" : "success"}>
+          {message}
+        </p>
+      )}
     </div>
   );
 };
