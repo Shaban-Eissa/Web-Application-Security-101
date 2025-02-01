@@ -9,7 +9,7 @@ const DDoS = () => {
   };
 
   return (
-    <div>
+    <div className="ddos-container">
       <h1>DDoS Demo</h1>
       <button onClick={floodServer}>Simulate Attack</button>
     </div>
