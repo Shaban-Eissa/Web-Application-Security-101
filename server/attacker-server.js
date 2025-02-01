@@ -16,7 +16,7 @@ app.post("/login", (req, res) => {
 
   // Fake success message to mislead the client
   if (username === "admin" && password === "password") {
-    res.send("Login successful, but you were hacked!");
+    res.send("Login successful, but you were hacked! ✔️");
   } else {
     res.status(401).send("Invalid credentials - Modified by attacker");
   }
