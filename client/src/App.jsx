@@ -4,8 +4,6 @@ import axios from "axios";
 
 import FakeAd from "./FakeAd";
 
-import "./index.css";
-
 function App() {
   return (
     <Router>
@@ -28,31 +26,38 @@ function Home() {
 
   return (
     <div className="container">
-      <h1>
-        💰 Bank Account: <span className="balance">$5000</span>
-      </h1>
+      {/* Headline and subtitle for CSRF Demo */}
+      <div className="heading-container">
+        <h1>Cross-Site Request Forgery (CSRF) Demo</h1>
+        <p className="subtitle">
+          Shows how unauthorized actions can be performed
+        </p>
+      </div>
 
+      {/* Bank Transfer Form */}
       <div className="input-group">
         <input
           type="number"
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
           placeholder="Amount"
+          className="input"
         />
         <input
           placeholder="Recipient"
           value={to}
           onChange={(e) => setTo(e.target.value)}
+          className="input"
         />
       </div>
 
-      <button onClick={transfer} className="btn">
+      <button onClick={transfer} className="button">
         Transfer Money
       </button>
 
       {/* Fake Ad */}
       <div
-        className="fake-ad"
+        className="info-box fake-ad"
         onClick={() => (window.location.href = "/fake-ad")}
       >
         <h3>🎉 Win a Free iPhone! Click Here! 🎉</h3>
