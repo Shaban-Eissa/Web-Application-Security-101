@@ -15,24 +15,53 @@ function App() {
   };
   return (
     <div className="container">
-      <h1>Login</h1>
+      {/* Headline and Subtitle */}
+      <div className="heading-container">
+        <h1>SQL Injection Demo</h1>
+        <p className="subtitle">
+          Shows how malicious SQL queries can be prevented
+        </p>
+      </div>
+
+      {/* Username Input */}
       <div className="input-container">
         <input
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           placeholder="Username"
+          className="input"
         />
       </div>
+
+      {/* Password Input */}
       <div className="input-container">
         <input
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
+          className="input"
         />
       </div>
-      <button onClick={handleLogin}>Login</button>
+
+      {/* Login Button */}
+      <button onClick={handleLogin} className="button">
+        Login
+      </button>
+
+      {/* Styled Box */}
+      <div className="info-box">
+        <p className="info-text">
+          Usage of parameterized queries can prevent SQL injection attacks. Try entering the following credentials: 
+          <br /> 
+          <br />
+          <strong>Username:</strong> admin
+          <br /> 
+          <strong>Password:</strong> password123
+          
+        </p>
+      </div>
     </div>
   );
 }
