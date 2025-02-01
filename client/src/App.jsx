@@ -1,18 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import "./App.css";
 
 function App() {
   const [comments, setComments] = useState([]);
-  const [newComment, setNewComment] = useState('');
+  const [newComment, setNewComment] = useState("");
 
   const fetchComments = async () => {
-    const response = await axios.get('http://localhost:5000/comments');
+    const response = await axios.get("http://localhost:5000/comments");
     setComments(response.data);
   };
 
   const addComment = async () => {
-    await axios.post('http://localhost:5000/comments', { text: newComment });
-    setNewComment('');
+    await axios.post("http://localhost:5000/comments", { text: newComment });
+    setNewComment("");
     fetchComments();
   };
 
@@ -21,17 +22,23 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <div className="container">
       <h1>Comments</h1>
-      <input
-        value={newComment}
-        onChange={(e) => setNewComment(e.target.value)}
-        placeholder="Add a comment"
-      />
-      <button onClick={addComment}>Submit</button>
-      <div>
-        {comments.map((comment) => (
-          <div key={comment.id} dangerouslySetInnerHTML={{ __html: comment.text }} />
+      <div className="input-container">
+        <input
+          value={newComment}
+          onChange={(e) => setNewComment(e.target.value)}
+          placeholder="Add a comment"
+        />
+        <button onClick={addComment}>Submit</button>
+      </div>
+      <div className="comments-section">
+        {comments.map((comment, index) => (
+          <div
+            key={index}
+            className="comment-box"
+            dangerouslySetInnerHTML={{ __html: comment.text }}
+          />
         ))}
       </div>
     </div>
