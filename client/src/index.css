@@ -83,8 +83,7 @@ input {
 
 /* Fake Ad Page */
 .fake-page {
-  background: linear-gradient(135deg, #f44336, #d32f2f);
-  color: white;
+  color: #000;
   padding: 30px;
   text-align: center;
   border-radius: 8px;
@@ -92,8 +91,8 @@ input {
 
 /* Error Message */
 .error-message {
-  background-color: #ffebee; /* Light red background */
-  color: #d32f2f; /* Dark red text */
+  background-color: rgb(255, 255, 255); /* Light red background */
+  color: rgb(255, 255, 255); /* Dark red text */
   padding: 10px;
   border: 1px solid #d32f2f;
   border-radius: 5px;

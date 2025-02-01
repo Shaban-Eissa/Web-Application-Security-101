@@ -43,11 +43,13 @@ function FakeAd() {
   }, [csrfToken]);
 
   return (
-    <div
-      className="error-message"
-      style={{ display: errorMess ? "block" : "none" }}
-    >
-      <p>{errorMess}</p>
+    <div className="container fake-page">
+      <div className="heading-container">
+        <h1>🎉 Congratulations! 🎉</h1>
+        <p className="subtitle">
+          You've won a free iPhone! Check your email for details.
+        </p>
+      </div>
     </div>
   );
 }
