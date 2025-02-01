@@ -23,15 +23,27 @@ function App() {
 
   return (
     <div className="container">
-      <h1>Comments</h1>
+      {/* Headline and Subtitle */}
+      <div className="heading-container">
+        <h1>Cross-Site Scripting (XSS) Demo</h1>
+        <p className="subtitle">Shows how malicious scripts can be injected</p>
+      </div>
+
+      {/* Label and Input */}
       <div className="input-container">
         <input
+          id="post-input"
           value={newComment}
           onChange={(e) => setNewComment(e.target.value)}
           placeholder="Add a comment"
+          className="input"
         />
-        <button onClick={addComment}>Submit</button>
+        <button onClick={addComment} className="button">
+          Submit
+        </button>
       </div>
+
+      {/* Comments Section */}
       <div className="comments-section">
         {comments.map((comment, index) => (
           <div
