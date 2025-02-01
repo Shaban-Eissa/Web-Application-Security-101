@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 const options = {
-  allowedTags: ["b", "i", "em", "strong", "a", "p", "img"],
+  allowedTags: ["b", "i", "em", "strong", "a", "p"],
   allowedAttributes: {
     "*": ["href", "src", "alt", "title", "onerror"],
   },
