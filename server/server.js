@@ -4,14 +4,13 @@ const jwt = require("jsonwebtoken");
 const cors = require("cors");
 
 const app = express();
-const secretKey = "your-very-secret-key"; // Store this securely in production
+const secretKey = "your-very-secret-key";
 
-// Middleware
 app.use(cors());
 app.use(bodyParser.json());
 
 // Simulated user database
-const users = [{ username: "admin", password: "password123" }];
+const users = [{ username: "admin", password: "password" }];
 
 // Login endpoint: issues JWT token on successful login
 app.post("/login", (req, res) => {
@@ -45,7 +44,7 @@ app.get("/protected", (req, res) => {
   });
 });
 
-// Start the server (Use HTTPS in production)
-app.listen(5000, () => {
+let PORT = 5000;
+app.listen(PORT, () => {
   console.log("Backend server running on http://localhost:5000");
 });
