@@ -1,11 +1,10 @@
 const express = require("express");
 const rateLimit = require("express-rate-limit");
-const cors = require("cors"); // Import CORS
+const cors = require("cors");
 
 const app = express();
 
-// Enable CORS for all origins (or specify your React app URL)
-app.use(cors({ origin: "http://localhost:5173" }));
+app.use(cors());
 
 // Rate limiting middleware
 const limiter = rateLimit({
@@ -26,7 +25,7 @@ app.get("/api/data", (req, res) => {
   res.send("Protected data!");
 });
 
-// Start the server
-app.listen(5000, () => {
+let PORT = 5000;
+app.listen(PORT, () => {
   console.log("Secure server running on http://localhost:5000");
 });
