@@ -1,0 +1,91 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+/* Centering Container */
+.container {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 400px;
+}
+
+/* Header */
+h1 {
+  font-size: 24px;
+  color: #333;
+}
+
+/* Account Balance */
+.balance {
+  font-weight: bold;
+  color: green;
+}
+
+/* Input Fields */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Buttons */
+.btn {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+  width: 100%;
+}
+
+.btn:hover {
+  background-color: #218838;
+}
+
+/* Fake Ad */
+.fake-ad {
+  margin-top: 20px;
+  padding: 15px;
+  background: linear-gradient(135deg, #ff9800, #ff5722);
+  color: white;
+  text-align: center;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.fake-ad:hover {
+  transform: scale(1.05);
+}
+
+/* Fake Ad Page */
+.fake-page {
+  background: linear-gradient(135deg, #f44336, #d32f2f);
+  color: white;
+  padding: 30px;
+  text-align: center;
+  border-radius: 8px;
+}
