@@ -7,7 +7,7 @@ const LoginPage = () => {
   const [message, setMessage] = useState("");
 
   const handleLogin = async () => {
-    setMessage(""); // Reset message before starting login
+    setMessage("");
 
     try {
       // Send login request to attacker server (MITM attack simulation)
@@ -15,37 +15,44 @@ const LoginPage = () => {
         username,
         password,
       });
-      setMessage(response.data); // Display manipulated response from attacker server
+      setMessage(response.data);
     } catch (error) {
       setMessage("Login failed!");
     }
   };
 
   return (
-    <div>
-      <h1>Login Page</h1>
-      <div>
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-      </div>
-      <div>
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
-      <div>
-        <button onClick={handleLogin}>Login</button>
-      </div>
-
-      <div>
-        <p>{message}</p>
+    <div className="login-container">
+      <div className="login-form">
+        <h1>Login Page</h1>
+        <div className="input-group">
+          <input
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </div>
+        <div className="input-group">
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <div>
+          <button onClick={handleLogin}>Login</button>
+        </div>
+        {message && (
+          <div
+            className={`message ${
+              message.includes("failed") ? "error" : "success"
+            }`}
+          >
+            {message}
+          </div>
+        )}
       </div>
     </div>
   );
