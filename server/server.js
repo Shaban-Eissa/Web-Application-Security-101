@@ -21,6 +21,7 @@ app.post("/login", (req, res) => {
   }
 });
 
-app.listen(5000, () => {
+let PORT = 5000;
+app.listen(PORT, () => {
   console.log("Victim server running on http://localhost:5000");
 });
