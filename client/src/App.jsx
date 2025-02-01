@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+import "./App.css";
+
 function App() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -17,44 +19,56 @@ function App() {
       const token = response.data.token;
       localStorage.setItem("authToken", token);
 
-      setMessage("Login successful");
+      setMessage("🔓 Login successful");
     } catch (error) {
-      setMessage("Login failed");
+      setMessage("❌ Login failed");
     }
   };
 
   return (
-    <div className="login-container">
-      <div className="login-form">
-        <h1>Login Page</h1>
-        <div className="input-group">
-          <input
-            type="text"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
+    <div className="container">
+      <div className="content-box">
+        {/* Headline & Subtitle */}
+        <div className="heading-container">
+          <h1>🔓 Man-in-the-Middle (MITM) Attack Demo</h1>
+          <p className="subtitle">
+            The data will be sent to the server using HTTPS.
+          </p>
         </div>
-        <div className="input-group">
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <div>
-          <button onClick={handleLogin}>Login</button>
-        </div>
-        {message && (
-          <div
-            className={`message ${
-              message.includes("failed") ? "error" : "success"
-            }`}
-          >
-            {message}
+
+        {/* Login Form */}
+        <div className="login-form">
+          <div className="input-group">
+            <input
+              type="text"
+              placeholder="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
           </div>
-        )}
+          <div className="input-group">
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <button onClick={handleLogin} className="button">
+            Login
+          </button>
+
+          {/* Message Box */}
+          {message && (
+            <div
+              className={`info-box ${
+                message.includes("failed") ? "error" : "success"
+              }`}
+            >
+              <p className="info-text">{message}</p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
