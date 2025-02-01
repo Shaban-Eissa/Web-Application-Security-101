@@ -35,6 +35,7 @@ app.get("/balance", (req, res) => {
   res.json({ balance });
 });
 
-app.listen(5000, () => {
+let PORT = 5000;
+app.listen(PORT, () => {
   console.log("Vulnerable server running on http://localhost:5000");
 });
