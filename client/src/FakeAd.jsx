@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-
-import "./index.css";
 
 function FakeAd() {
   const [csrfToken, setCsrfToken] = useState("");
@@ -49,6 +47,7 @@ function FakeAd() {
         <p className="subtitle">
           You've won a free iPhone! Check your email for details.
         </p>
+        {errorMess && <p className="error">{errorMess}</p>}
       </div>
     </div>
   );
