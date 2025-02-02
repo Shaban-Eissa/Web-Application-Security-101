@@ -93,7 +93,7 @@ function Home() {
         />
       </div>
 
-      <button onClick={transfer} className="btn">
+      <button onClick={transfer} className="button">
         Transfer Money
       </button>
 
