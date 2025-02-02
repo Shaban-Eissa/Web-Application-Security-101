@@ -6,13 +6,29 @@ function App() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const validateInput = (username, password) => {
+    const usernamePattern = /^[a-zA-Z0-9_]{3,20}$/; // Only allow alphanumeric and underscores (3-20 chars)
+    if (!usernamePattern.test(username)) {
+      alert("Invalid username format.");
+      return false;
+    }
+    if (password.length < 6) {
+      alert("Password must be at least 6 characters long.");
+      return false;
+    }
+    return true;
+  };
+
   const handleLogin = async () => {
+    if (!validateInput(username, password)) return; // Stop execution if input is invalid
+
     const response = await axios.post("http://localhost:5000/login", {
       username,
       password,
     });
     alert(response.data);
   };
+
   return (
     <div className="container">
       {/* Headline and Subtitle */}
@@ -53,13 +69,13 @@ function App() {
       {/* Styled Box */}
       <div className="info-box">
         <p className="info-text">
-          Usage of parameterized queries can prevent SQL injection attacks. Try entering the following credentials: 
-          <br /> 
+          Usage of parameterized queries can prevent SQL injection attacks. Try
+          entering the following credentials:
+          <br />
           <br />
           <strong>Username:</strong> admin
-          <br /> 
+          <br />
           <strong>Password:</strong> password123
-          
         </p>
       </div>
     </div>
