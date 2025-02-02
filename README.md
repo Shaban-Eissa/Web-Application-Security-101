@@ -48,7 +48,7 @@ This repository demonstrates common security vulnerabilities, including **XSS (
    ```
 
 6. Explore the application and test the vulnerabilities on the selected branch.
-7. Every attack has two branches one with the attack such as `csrf-monster` and one with the solution such as `csrf-hero`.
+7. Every attack has two branches one with the attack such as `csrf-vuln` and one with the solution such as `csrf-fix`.
 
 ## Branches and Vulnerabilities
 
