@@ -20,7 +20,6 @@ function Home() {
   const [amount, setAmount] = useState(100);
   const [to, setTo] = useState("");
 
-  // Fetch CSRF token on page load if it's not in localStorage
   useEffect(() => {
     axios
       .get("http://localhost:5000/csrf-token", { withCredentials: true })
@@ -30,15 +29,14 @@ function Home() {
       .catch((error) => {
         console.error("Failed to fetch CSRF token:", error);
       });
-  }, []); // Empty dependency array to fetch token once
+  }, []);
 
   const handleAmountChange = (e) => {
     const value = e.target.value;
-    // Ensure the input is a valid number
     if (value && !isNaN(value) && value > 0) {
       setAmount(Number(value));
     } else {
-      setAmount(""); // Clear invalid amount
+      setAmount("");
     }
   };
 
@@ -48,7 +46,6 @@ function Home() {
       return;
     }
 
-    // Check if amount and recipient are valid
     if (amount <= 0 || !to) {
       alert("Invalid transfer details");
       return;
@@ -67,7 +64,6 @@ function Home() {
     } catch (error) {
       console.error("Transfer failed:", error);
       alert("Transfer failed. CSRF protection might be blocking it.");
-      // Log detailed error to help with debugging
       console.log(error.response?.data || error.message);
     }
   };
