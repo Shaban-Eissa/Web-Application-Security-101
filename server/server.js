@@ -2,17 +2,23 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 
 const app = express();
 const secretKey = "your-very-secret-key";
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 app.use(bodyParser.json());
+app.use(cookieParser());
 
 // Simulated user database
 const users = [{ username: "admin", password: "password" }];
 
-// Login endpoint: issues JWT token on successful login
 app.post("/login", (req, res) => {
   const { username, password } = req.body;
   const user = users.find(
@@ -22,7 +28,14 @@ app.post("/login", (req, res) => {
     const token = jwt.sign({ username: user.username }, secretKey, {
       expiresIn: "1h",
     });
-    res.json({ token });
+
+    res.cookie("authToken", token, {
+      httpOnly: true, // Cannot be accessed via JavaScript
+      sameSite: "Strict", // Prevents the cookie from being sent in cross-site requests
+      maxAge: 3600000, // 1 hour expiration
+    });
+
+    res.json({ message: "Login successful" });
   } else {
     res.status(401).send("Invalid credentials");
   }
@@ -30,7 +43,7 @@ app.post("/login", (req, res) => {
 
 // Protected route: requires a valid JWT token
 app.get("/protected", (req, res) => {
-  const token = req.headers["authorization"]?.split(" ")[1]; // Get the token from Authorization header
+  const token = req.cookies["authToken"];
 
   if (!token) {
     return res.status(403).send("Token required");
