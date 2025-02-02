@@ -1,18 +1,25 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+
 import "./App.css";
 
 function App() {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
 
+  // We can use DOMPurify before rendering → Removes dangerous scripts while keeping safe HTML.
+
   const fetchComments = async () => {
     const response = await axios.get("http://localhost:5000/comments");
     setComments(response.data);
   };
 
+  const escapeHTML = (str) => str.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
   const addComment = async () => {
-    await axios.post("http://localhost:5000/comments", { text: newComment });
+    await axios.post("http://localhost:5000/comments", {
+      text: escapeHTML(newComment),
+    });
     setNewComment("");
     fetchComments();
   };
@@ -48,11 +55,9 @@ function App() {
         {comments
           .filter((comment) => comment.text.trim() !== "")
           .map((comment, index) => (
-            <div
-              key={index}
-              className="comment-box"
-              dangerouslySetInnerHTML={{ __html: comment.text }}
-            />
+            <div key={index} className="comment-box">
+              {comment.text}
+            </div>
           ))}
       </div>
     </div>
