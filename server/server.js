@@ -6,14 +6,22 @@ const cookieParser = require("cookie-parser");
 
 const app = express();
 app.use(bodyParser.json());
-app.use(cors());
 app.use(cookieParser());
 
-const csrfProtection = csrf({ cookie: true });
+app.use(
+  cors({
+    credentials: true,
+    origin: "http://localhost:5173",
+  })
+);
 
 let balance = 5000;
 
-// Generate CSRF token
+const csrfProtection = csrf({
+  cookie: { httpOnly: true, secure: false, maxAge: 3600000 },
+});
+
+// Generate CSRF token for frontend use
 app.get("/csrf-token", csrfProtection, (req, res) => {
   res.json({ csrfToken: req.csrfToken() });
 });
@@ -21,9 +29,8 @@ app.get("/csrf-token", csrfProtection, (req, res) => {
 app.post("/transfer", csrfProtection, (req, res) => {
   const { amount, to } = req.body;
 
-  // Validate inputs
   if (typeof amount !== "number" || !to) {
-    return res.status(400).json({ error: "Invalid CSRF token" });
+    return res.status(400).json({ error: "Invalid transfer details" });
   }
 
   balance -= amount;
@@ -37,5 +44,5 @@ app.get("/balance", (req, res) => {
 
 let PORT = 5000;
 app.listen(PORT, () => {
-  console.log("Vulnerable server running on http://localhost:5000");
+  console.log("Server running on http://localhost:5000");
 });
