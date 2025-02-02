@@ -7,8 +7,8 @@ This repository demonstrates common security vulnerabilities, including **XSS (
 1. Clone the repository
 
    ```bash
-   git clone https://github.com/your-username/security-vulnerabilities-demo.git
-   cd security-vulnerabilities-demo
+   git clone https://github.com/Shaban-Eissa/Web-Application-Security-101.git
+   cd Web-Application-Security-101
    ```
 
 2. Install the dependencies and run the application
