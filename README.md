@@ -48,7 +48,7 @@ This repository demonstrates common security vulnerabilities, including **XSS (
    ```
 
 6. Explore the application and test the vulnerabilities on the selected branch.
-7. Every attack has two branches one with the attack such as `csrf-monster` and one with the solution such as `csrf-hero`.
+7. Every attack has two branches one with the attack such as `csrf-vuln` and one with the solution such as `csrf-fix`.
 
 ## Branches and Vulnerabilities
 
@@ -77,7 +77,7 @@ This repository demonstrates common security vulnerabilities, including **XSS (
   - Use parameterized queries or prepared statements.
   - Validate and sanitize all user inputs.
 
-### 5. **DDoS**
+### 4. **DDoS**
 
 - **Branch**: ddos-monster
 - **Description**: Demonstrates a basic DDoS attack simulation.
@@ -85,7 +85,7 @@ This repository demonstrates common security vulnerabilities, including **XSS (
 
   - Implement rate limiting using libraries like express-rate-limit.
 
-### 6. **MITM**
+### 5. **MITM**
 
 - **Branch**: mitm-monster
 - **Description**: Demonstrates a Man-in-the-Middle attack on unencrypted HTTP traffic.
