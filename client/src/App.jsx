@@ -53,7 +53,9 @@ function App() {
       {/* Styled Box */}
       <div className="info-box">
         <p className="info-text">
-          Try using "admin" as the username and "' OR '1'='1' --" as the
+          Try using <span className="highlight-username">"admin"</span> as the
+          username and "{" "}
+          <span className="highlight-password">' OR '1'='1' -- </span> " as the
           password to bypass authentication.
         </p>
       </div>
