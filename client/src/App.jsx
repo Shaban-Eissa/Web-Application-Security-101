@@ -28,55 +28,76 @@ function App() {
     });
     alert(response.data);
   };
-
   return (
-    <div className="container">
-      {/* Headline and Subtitle */}
-      <div className="heading-container">
-        <h1>SQL Injection Demo</h1>
-        <p className="subtitle">
-          Shows how malicious SQL queries can be prevented
-        </p>
-      </div>
-
-      {/* Username Input */}
-      <div className="input-container">
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          placeholder="Username"
-          className="input"
-        />
-      </div>
-
-      {/* Password Input */}
-      <div className="input-container">
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-          className="input"
-        />
-      </div>
-
-      {/* Login Button */}
-      <button onClick={handleLogin} className="button">
-        Login
-      </button>
-
-      {/* Styled Box */}
-      <div className="info-box">
-        <p className="info-text">
-          Usage of parameterized queries can prevent SQL injection attacks. Try
-          entering the following credentials:
-          <br />
-          <br />
-          <strong>Username:</strong> admin
-          <br />
-          <strong>Password:</strong> password123
-        </p>
+    <div className="page-container">
+      <div className="content-wrapper">
+        {/* Left Section: Login Form */}
+        <div className="login-container">
+          <div className="heading-container">
+            <h1>SQL Injection Demo</h1>
+            <p className="subtitle">Shows how malicious SQL queries can be prevented</p>
+          </div>
+          
+          <div className="input-container">
+            <input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="Username"
+              className="input"
+            />
+          </div>
+          
+          <div className="input-container">
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password"
+              className="input"
+            />
+          </div>
+          
+          <button onClick={handleLogin} className="button">
+            Login
+          </button>
+        </div>
+        {/* Right Section: Info Box */}
+        <div className="info-container">
+          <div className="info-box">
+            <p className="info-text">
+              <strong>Secure Implementation:</strong>
+              <br />
+              This demo uses input validation and parameterized queries to prevent SQL injection.
+              <br /><br />
+              <strong>Try these tests:</strong>
+              <br /><br />
+              1. Valid credentials:
+              <br />
+              <strong>Username:</strong>{" "}
+              <code className="credential" onClick={() => setUsername("admin")}>
+                admin
+              </code>
+              <br />
+              <strong>Password:</strong>{" "}
+              <code className="credential" onClick={() => setPassword("password123")}>
+                password123
+              </code>
+              <br /><br />
+              2. SQL Injection attempt (will be blocked):
+              <br />
+              <strong>Username:</strong>{" "}
+              <code className="credential" onClick={() => setUsername("admin")}>
+                admin
+              </code>
+              <br />
+              <strong>Password:</strong>{" "}
+              <code className="credential credential-danger" onClick={() => setPassword("' OR '1'='1")}>
+                ' OR '1'='1
+              </code>
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
