@@ -32,47 +32,53 @@ function App() {
   return (
     <div className="container">
       <div className="content-box">
-        {/* Headline & Subtitle */}
         <div className="heading-container">
-          <h1>🔓 Man-in-the-Middle (MITM) Attack Demo</h1>
+          <h1>🔓 Man-in-the-Middle Demo</h1>
           <p className="subtitle">
-            The data will be sent to the server using HTTPS.
+            Shows how data can be intercepted between client and server.
           </p>
         </div>
 
-        {/* Login Form */}
-        <div className="login-form">
-          <div className="input-group">
-            <input
-              type="text"
-              placeholder="Username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-          </div>
-          <div className="input-group">
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          <button onClick={handleLogin} className="button">
-            Login
-          </button>
-
-          {/* Message Box */}
-          {message && (
-            <div
-              className={`info-box ${
-                message.includes("failed") ? "error" : "success"
-              }`}
-            >
-              <p className="info-text">{message}</p>
-            </div>
-          )}
+        <div className="input-group">
+          <input
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
         </div>
+        <div className="input-group">
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+
+        <div className="credentials-container">
+          <p>Try these credentials:</p>
+          <div className="credential" onClick={() => setUsername("admin")}>
+            username: admin
+          </div>
+          <div className="credential" onClick={() => setPassword("password")}>
+            password: password
+          </div>
+        </div>
+
+        <button onClick={handleLogin} className="button">
+          Login
+        </button>
+
+        {message && (
+          <div
+            className={`info-box ${
+              message.includes("failed") ? "error" : "success"
+            }`}
+          >
+            <p className="info-text">{message}</p>
+          </div>
+        )}
       </div>
     </div>
   );
