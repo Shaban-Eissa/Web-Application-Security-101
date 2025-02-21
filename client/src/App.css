@@ -9,7 +9,24 @@ body {
   text-align: center;
   min-height: 100vh;
 }
+.credential {
+  background: #f8f9fa;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-family: monospace;
+  color: #e74c3c;
+  font-weight: 600;
+  border: 1px solid #e0e0e0;
+  display: inline-block;
+  margin: 0 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
 
+.credential:hover {
+  background: #e9ecef;
+  transform: translateY(-1px);
+}
 .container {
   display: flex;
   justify-content: center;
@@ -29,11 +46,9 @@ body {
   width: 100%;
   max-width: 500px;
 }
-
 .heading-container {
   margin-bottom: 30px;
 }
-
 h1 {
   font-size: 2.5rem;
   color: #2c3e50;
@@ -41,13 +56,11 @@ h1 {
   font-weight: 600;
   letter-spacing: -0.5px;
 }
-
 .subtitle {
   font-size: 1.3rem;
   color: #34495e;
   line-height: 1.4;
 }
-
 .input-container {
   display: flex;
   flex-direction: column;
@@ -57,7 +70,6 @@ h1 {
   width: 100%;
   gap: 10px;
 }
-
 .input {
   width: 100%;
   padding: 15px;
@@ -68,13 +80,11 @@ h1 {
   transition: all 0.3s ease;
   background: #ffffff;
 }
-
 .input:focus {
   outline: none;
   border-color: #3498db;
   box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
 }
-
 .button {
   padding: 14px 24px;
   background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
@@ -90,18 +100,15 @@ h1 {
   letter-spacing: 0.5px;
   margin-top: 10px;
 }
-
 .button:hover {
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   background: linear-gradient(135deg, #2980b9 0%, #2573a7 100%);
 }
-
 .button:active {
   transform: translateY(0);
   background: linear-gradient(135deg, #2573a7 0%, #1a5276 100%);
 }
-
 .info-box {
   margin-top: 25px;
   padding: 20px;
@@ -114,8 +121,15 @@ h1 {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   border: 1px solid rgba(255, 197, 149, 0.3);
 }
-
 .info-text {
   margin: 0;
   line-height: 1.6;
+}
+.highlight-username {
+  color: red;
+  font-weight: bold;
+}
+.highlight-password {
+  color: red;
+  font-weight: bold;
 }

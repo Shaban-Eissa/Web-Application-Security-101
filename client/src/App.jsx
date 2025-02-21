@@ -53,8 +53,11 @@ function App() {
       {/* Styled Box */}
       <div className="info-box">
         <p className="info-text">
-          Try using "admin" as the username and "' OR '1'='1' --" as the
-          password to bypass authentication.
+          Try using <code className="credential" onClick={() => setUsername("admin")}>admin</code> as the username and{" "}
+          <code className="credential" onClick={() => setPassword("' OR '1'='1' --")}>
+            ' OR '1'='1' --
+          </code>{" "}
+          as the password to bypass authentication.
         </p>
       </div>
     </div>
