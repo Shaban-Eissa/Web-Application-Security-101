@@ -24,11 +24,9 @@ function App() {
       );
     }
   };
-
   return (
     <div className="container">
       <div className="content-box">
-        {/* Headline & Subtitle */}
         <div className="heading-container">
           <h1>🔓 Man-in-the-Middle (MITM) Attack Demo</h1>
           <p className="subtitle">
@@ -36,7 +34,6 @@ function App() {
           </p>
         </div>
 
-        {/* Login Form */}
         <div className="login-form">
           <div className="input-group">
             <input
@@ -54,11 +51,21 @@ function App() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
+
+          <div className="credentials-container">
+            <p>Try these credentials:</p>
+            <div className="credential" onClick={() => setUsername("admin")}>
+              username: admin
+            </div>
+            <div className="credential" onClick={() => setPassword("password")}>
+              password: password
+            </div>
+          </div>
+
           <button onClick={handleLogin} className="button">
             Login
           </button>
 
-          {/* Message Box */}
           {message && (
             <div
               className={`info-box ${
