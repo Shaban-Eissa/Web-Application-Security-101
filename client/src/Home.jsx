@@ -56,39 +56,45 @@ function Home() {
 
   return (
     <div className="container">
-      <div className="heading-container">
-        <h1>Cross-Site Request Forgery (CSRF) Demo</h1>
-        <p className="subtitle">
-          Shows how unauthorized actions can be prevented
-        </p>
-      </div>
+      <div className="content-box">
+        <div className="heading-container">
+          <h1>🛡️ CSRF Protection Demo</h1>
+          <p className="subtitle">
+            Shows how unauthorized actions can be prevented
+          </p>
+        </div>
 
-      <div className="input-group">
-        <input
-          type="number"
-          value={amount}
-          onChange={handleAmountChange}
-          placeholder="Amount"
-          className="input"
-        />
-        <input
-          placeholder="Recipient"
-          value={to}
-          onChange={(e) => setTo(e.target.value)}
-          className="input"
-        />
-      </div>
+        <div className="input-group">
+          <input
+            type="number"
+            value={amount}
+            onChange={handleAmountChange}
+            placeholder="Amount to Transfer"
+            className="input"
+          />
+        </div>
+        <div className="input-group">
+          <input
+            placeholder="Recipient Name"
+            value={to}
+            onChange={(e) => setTo(e.target.value)}
+            className="input"
+          />
+        </div>
 
-      <button onClick={transfer} className="button">
-        Transfer Money
-      </button>
+        <button onClick={transfer} className="button">
+          Transfer Money
+        </button>
 
-      {/* Fake Ad */}
-      <div
-        className="info-box fake-ad"
-        onClick={() => (window.location.href = "/fake-ad")}
-      >
-        <h3>🎉 Win a Free iPhone! Click Here! 🎉</h3>
+        <div 
+          className="fake-ad-container"
+          onClick={() => (window.location.href = "/fake-ad")}
+        >
+          <div className="fake-ad">
+            <h3>🎉 Congratulations!</h3>
+            <p>You've been selected to win a free iPhone! Click here!</p>
+          </div>
+        </div>
       </div>
     </div>
   );

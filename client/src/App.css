@@ -27,7 +27,7 @@ body {
 }
 
 .heading-container {
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
 }
 
 h1 {
@@ -57,6 +57,7 @@ h1 {
   border-radius: 12px;
   box-sizing: border-box;
   transition: all 0.3s ease;
+  background: #ffffff;
 }
 
 .input:focus {
@@ -130,7 +131,7 @@ h1 {
 
 .error {
   background: rgba(231, 76, 60, 0.1);
-  border-left: 3px solid #e74c3c;
+  border-left: 4px solid #e74c3c;
   color: #c0392b;
 }
 
