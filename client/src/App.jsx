@@ -7,7 +7,12 @@ function App() {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
 
-  // We can use DOMPurify before rendering → Removes dangerous scripts while keeping safe HTML.
+  // Set up example cookies for demonstration
+  useEffect(() => {
+    document.cookie = "userID=12345; path=/";
+    document.cookie = "sessionToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9; path=/";
+    document.cookie = "userPreferences=theme:dark; path=/";
+  }, []);
 
   const fetchComments = async () => {
     const response = await axios.get("http://localhost:5000/comments");
@@ -30,13 +35,18 @@ function App() {
 
   return (
     <div className="container">
-      {/* Headline and Subtitle */}
       <div className="heading-container">
-        <h1>Cross-Site Scripting (XSS) Demo</h1>
+        <h1>Cross-Site Scripting (XSS)</h1>
         <p className="subtitle">Shows how malicious scripts can be prevented</p>
       </div>
 
-      {/* Label and Input */}
+      <div className="input-container">
+        <div className="input-label">Safe Comment Input (HTML is escaped)</div>
+        <code>
+          Try entering: {'<script>alert("XSS")</script>'}
+        </code>
+      </div>
+
       <div className="input-container">
         <input
           id="post-input"
@@ -50,7 +60,6 @@ function App() {
         </button>
       </div>
 
-      {/* Comments Section */}
       <div className="comments-section">
         {comments
           .filter((comment) => comment.text.trim() !== "")
