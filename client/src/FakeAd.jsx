@@ -31,7 +31,7 @@ function FakeAd() {
             You've won a free iPhone! Check your email for details.
           </p>
         </div>
-        <div className="info-box">
+        <div className="info-box success">
           <p className="info-text">
             We're processing your prize! You'll receive an email shortly with shipping details.
           </p>

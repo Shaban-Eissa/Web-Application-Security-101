@@ -126,9 +126,18 @@ h1 {
   font-size: 1rem;
   text-align: left;
   box-sizing: border-box;
+}
+
+.success {
   background: rgba(46, 204, 113, 0.1);
   border-left: 4px solid #2ecc71;
   color: #27ae60;
+}
+
+.error {
+  background: rgba(231, 76, 60, 0.1);
+  border-left: 4px solid #e74c3c;
+  color: #c0392b;
 }
 
 /* Responsive design */
