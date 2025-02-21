@@ -41,13 +41,19 @@ function FakeAd() {
   }, [csrfToken]);
 
   return (
-    <div className="container fake-page">
-      <div className="heading-container">
-        <h1>🎉 Congratulations! 🎉</h1>
-        <p className="subtitle">
-          You've won a free iPhone! Check your email for details.
-        </p>
-        {errorMess && <p className="error">{errorMess}</p>}
+    <div className="container">
+      <div className="content-box">
+        <div className="heading-container">
+          <h1>🎉 Congratulations! 🎉</h1>
+          <p className="subtitle">
+            You've won a free iPhone! Check your email for details.
+          </p>
+        </div>
+        {errorMess && (
+          <div className="info-box error">
+            <p className="info-text">{errorMess}</p>
+          </div>
+        )}
       </div>
     </div>
   );
