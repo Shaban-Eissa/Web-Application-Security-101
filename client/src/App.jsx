@@ -31,7 +31,7 @@ function App() {
   return (
     <div className="container">
       <div className="heading-container">
-        <h1>Cross-Site Scripting (XSS) Demo</h1>
+        <h1>Cross-Site Scripting (XSS)</h1>
         <p className="subtitle">Shows how malicious scripts can be injected</p>
       </div>
 
