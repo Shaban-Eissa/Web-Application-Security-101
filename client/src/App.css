@@ -1,88 +1,188 @@
+/* Base styles */
 body {
   margin: 0;
   padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #f7f7f7;
-  font-family: Arial, sans-serif;
-  text-align: center;
-  height: 100vh;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  font-family: 'Segoe UI', Arial, sans-serif;
+  overflow-y: auto;
+  color: #333;
 }
 
 .container {
+  min-height: 100vh;
+  padding: 2rem;
   display: flex;
-  justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100vh;
-  background-color: #f7f7f7;
+  justify-content: center;
 }
 
 .content-box {
-  background-color: #ffffff;
-  padding: 40px;
-  border-radius: 12px;
-  box-shadow: 0 10px 3px rgba(0, 0, 0, 0.03);
+  background: rgba(255, 255, 255, 0.95);
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  backdrop-filter: blur(4px);
   width: 100%;
   max-width: 600px;
   text-align: center;
 }
 
 .heading-container {
-  margin-bottom: 30px;
+  margin-bottom: 2.5rem;
 }
 
 h1 {
   font-size: 2.5rem;
-  color: #333;
-  margin-bottom: 15px;
+  color: #2c3e50;
+  margin-bottom: 1rem;
   font-weight: 600;
-  letter-spacing: 1px;
+  letter-spacing: -0.5px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .subtitle {
   font-size: 1.3rem;
-  color: #666;
-  margin-bottom: 25px;
+  color: #34495e;
+  line-height: 1.4;
+}
+
+.control-panel {
+  background: rgba(247, 248, 249, 0.95);
+  padding: 1.5rem;
+  border-radius: 15px;
+  margin-bottom: 1.5rem;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.slider-container {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.slider-container label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+input[type="range"] {
+  width: 100%;
+  height: 6px;
+  background: #e0e0e0;
+  border-radius: 3px;
+  outline: none;
+  -webkit-appearance: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #3498db;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  background: #2980b9;
+  transform: scale(1.1);
 }
 
 .button {
-  padding: 15px 25px;
-  background-color: #007bff;
-  color: white;
-  font-size: 1.2rem;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s;
   width: 100%;
-  margin-top: 20px;
+  padding: 1rem;
+  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+  color: white;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
 }
 
-.button:hover {
-  background-color: #0056b3;
+.button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, #c0392b 0%, #a93226 100%);
 }
 
-.button:active {
-  background-color: #004085;
+.button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.button.attacking {
+  background: linear-gradient(135deg, #7f8c8d 0%, #95a5a6 100%);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.98); }
+  100% { transform: scale(1); }
 }
 
 .info-box {
-  margin-top: 20px;
-  padding: 15px;
-  background-color: rgba(206, 206, 206, 0.84);
-  border-radius: 8px;
-  color: rgb(0, 0, 0);
-  font-size: 0.9rem;
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: rgba(247, 248, 249, 0.95);
+  border-radius: 12px;
+  color: #2c3e50;
+  font-size: 1rem;
   text-align: left;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border-left: 4px solid #3498db;
+}
+
+.info-title {
+  margin: 0 0 1rem 0;
+  color: #2c3e50;
+  font-size: 1.2rem;
 }
 
 .info-text {
   margin: 0;
-  line-height: 1.5;
+  line-height: 1.6;
+  font-weight: 500;
 }
 
-.info-subtext {
-  color: rgb(0, 0, 0);
+.info-details {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.info-list {
+  margin: 0.5rem 0 0 1.5rem;
+  padding: 0;
+}
+
+.info-list li {
+  margin-bottom: 0.5rem;
+  color: #34495e;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .content-box {
+    padding: 1.5rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+  }
 }
