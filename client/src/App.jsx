@@ -42,8 +42,8 @@ function App() {
 
       <div className="input-container">
         <div className="input-label">Safe Comment Input (HTML is escaped)</div>
-        <code>
-          Try entering: {'<script>alert("XSS")</script>'}
+        <code onClick={() => setNewComment('<script>alert("XSS")</script>')}>
+          {'<script>alert("XSS")</script>'}
         </code>
       </div>
 
